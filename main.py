@@ -93,11 +93,12 @@ def main():
     nx.draw(G, pos, with_labels=False, node_color=node_colors, node_size=node_sizes,
             cmap=plt.cm.RdYlBu, edge_color="gray", alpha=0.7)
 
-    # Подписываем только корректные узлы
-    nx.draw_networkx_labels(G, pos, labels=valid_labels, font_size=10, font_weight='bold', font_color='black')
+    # Подписываем только корректные узлы (никнеймы)
+    nx.draw_networkx_labels(G, pos, labels=valid_labels, font_size=20, font_weight='bold', font_color='black')
 
-    # plt.title("Improved Graph Layout With Centralities")
-    # plt.show()
+    # Подписываем ID пользователей над точками
+    id_labels = {node: str(node) for node in G.nodes()}  # Создаем словарь для отображения ID
+    nx.draw_networkx_labels(G, pos, labels=id_labels, font_size=12, font_color='blue')  # Отображаем ID с меньшим шрифтом
 
     plt.savefig("graph_output.png")
     print("График сохранён в файл graph_output.png")
